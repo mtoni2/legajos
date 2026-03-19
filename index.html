@@ -120,7 +120,7 @@
         auth.onAuthStateChanged(user => {
             const dashboard = document.getElementById('dashboard');
             const loginPage = document.getElementById('login-page');
-            if (user && ['marcelotoni2@gmail.com', 'registromauro@gmail.com', 'mlauranavia@gmailcom', 'arracintia@gmail.com', 'florencialipari2@gmail.com', 'belenmarinaro@gmail.com', 'ritachamorro86@gmail.com', 'marielita0273@gmail.com', 'shaylem9307@gmail.com', 'saganiaselenacarolina@gmail.com', 'julianbaglio@gmail.com', 'lilianarossi14@gmail.com', 'danieldelgadillo55@gmail.com'].includes(user.email)) {
+            if (user && ['marcelotoni2@gmail.com', 'registromauro@gmail.com', 'mlauranavia@gmailcom', 'arracintia@gmail.com', 'florencialipari2@gmail.com', 'belenmarinaro@gmail.com', 'ritachamorro86@gmail.com', 'marielita0273@gmail.com', 'shaylem9307@gmail.com', 'saganiaselenacarolina@gmail.com', 'julianbaglio@gmail.com', 'lilianarossi14@gmail.com', 'danieldelgadillo55@gmail.com', 'iris.tony24@gmailcom', 'maridelourdes74@gmail.com'].includes(user.email)) {
                 loginPage.style.display = 'none'; dashboard.style.display = 'block';
             } else {
                 if(user) document.getElementById('errorMsg').style.display = 'block';
