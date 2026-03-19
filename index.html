@@ -107,16 +107,13 @@
 
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        function login() {
-            auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-        }
+        function login() { auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); }
         function logout() { auth.signOut(); }
         function filterCards() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('prof-card');
             for (let card of cards) {
-                let name = card.innerText.toLowerCase();
-                card.style.display = name.includes(input) ? "" : "none";
+                card.style.display = card.innerText.toLowerCase().includes(input) ? "" : "none";
             }
         }
         auth.onAuthStateChanged(user => {

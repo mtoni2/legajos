@@ -37,7 +37,7 @@ if not os.path.exists(carpeta_raiz):
 try:
     profesores = sorted(list(diccionario_profes.keys()))
 
-    # ENCABEZADO: Mantiene el diseño limpio de la pantalla principal
+    # ENCABEZADO: Pantalla principal limpia
     html_inicio = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -106,7 +106,7 @@ try:
         ruta_profe = os.path.join(carpeta_raiz, nombre_carpeta)
         if not os.path.exists(ruta_profe): os.makedirs(ruta_profe)
 
-        # GENERAR FICHA.HTML: Aquí agregamos el Teléfono con estilo profesional
+        # GENERAR FICHA.HTML: Diseño profesional con Teléfono
         ficha_path = os.path.join(ruta_profe, "Ficha.html")
         with open(ficha_path, "w", encoding="utf-8") as f_p:
             f_p.write(f"""
@@ -120,9 +120,9 @@ try:
                     body {{ background: #f4f7f6; padding: 40px; font-family: 'Segoe UI', sans-serif; }}
                     .ficha-card {{ background: white; border-radius: 15px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }}
                     .header-profe {{ border-bottom: 3px solid #007bff; padding-bottom: 15px; margin-bottom: 25px; color: #1a252f; }}
-                    .dato-linea {{ padding: 12px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }}
-                    .btn-volver {{ background: #1a252f; color: white; border: none; margin-top: 20px; }}
-                    .btn-volver:hover {{ background: #2c3e50; color: white; }}
+                    .dato-linea {{ padding: 12px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }}
+                    .btn-volver {{ background: #1a252f; color: white; border: none; margin-top: 20px; transition: 0.3s; }}
+                    .btn-volver:hover {{ background: #2c3e50; color: white; transform: scale(1.05); }}
                 </style>
             </head>
             <body>
@@ -136,7 +136,7 @@ try:
                         <div class="dato-linea"><strong>Teléfono:</strong> <span>{tel}</span></div>
                     </div>
                     <div class="alert alert-warning mt-4 py-2 text-center">
-                        📂 Carpeta en proceso de digitalización.
+                        <span class="me-2">📂</span> Carpeta digital en proceso de digitalización.
                     </div>
                     <div class="text-center">
                         <a href="../../index.html" class="btn btn-volver px-4">⬅️ Regresar al Archivo</a>
@@ -146,7 +146,7 @@ try:
             </html>
             """)
 
-        # Item de la lista principal (Solo CUIL para que sea más profesional)
+        # Item principal: Solo Nombre y CUIL
         html_items += f"""
                 <div class="col-md-4 prof-card">
                     <a href="./{carpeta_raiz}/{nombre_carpeta}/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
@@ -160,7 +160,7 @@ try:
                     </a>
                 </div>"""
 
-    # CIERRE DEL ARCHIVO INDEX.HTML
+    # CIERRE DE INDEX.HTML
     html_fin = f"""
             </div>
         </div>
@@ -169,16 +169,13 @@ try:
         {firebase_config}
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        function login() {{
-            auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-        }}
+        function login() {{ auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); }}
         function logout() {{ auth.signOut(); }}
         function filterCards() {{
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('prof-card');
             for (let card of cards) {{
-                let name = card.innerText.toLowerCase();
-                card.style.display = name.includes(input) ? "" : "none";
+                card.style.display = card.innerText.toLowerCase().includes(input) ? "" : "none";
             }}
         }}
         auth.onAuthStateChanged(user => {{
@@ -197,8 +194,7 @@ try:
 
     with open(archivo_html_principal, "w", encoding="utf-8") as f:
         f.write(html_inicio + html_items + html_fin)
-
-    print(f"✅ ¡Sistema actualizado! Profesores: {len(profesores)}")
+    print(f"✅ ¡Todo listo! Se actualizaron {len(profesores)} archivos.")
 
 except Exception as e:
     print(f"❌ Error: {e}")
