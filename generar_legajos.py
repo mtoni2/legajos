@@ -37,7 +37,7 @@ if not os.path.exists(carpeta_raiz):
 try:
     profesores = sorted(list(diccionario_profes.keys()))
 
-    # ENCABEZADO: Exactamente como el archivo que me pasaste
+    # ENCABEZADO: Mantiene el diseño limpio de la pantalla principal
     html_inicio = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -65,7 +65,6 @@ try:
             font-weight: bold; border-radius: 8px; transition: 0.3s; 
             display: inline-flex; align-items: center; justify-content: center;
         }}
-        .btn-google:hover {{ background: #f8f9fa; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-1px); }}
         #dashboard {{ display: none; }}
         .main-header {{ background: #1a252f; color: white; padding: 1.5rem; border-bottom: 5px solid #007bff; }}
         .card-profesor {{ border: none; border-left: 5px solid #007bff; transition: 0.3s; cursor: pointer; text-decoration: none; color: inherit; }}
@@ -78,7 +77,6 @@ try:
         <h3 class="mb-5" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">C.E.N.S. 3-484 "Laila Abusamra"</h3>
         <div class="card login-card p-5">
             <div class="mb-4"><span style="font-size: 3rem;">🔐</span><h4 class="mt-2 fw-bold">Acceso Restringido</h4></div>
-            <p class="text-muted mb-4">Inicie sesión para gestionar la documentación docente.</p>
             <button onclick="login()" class="btn btn-google shadow-sm">
                 <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" width="22" class="me-3"> Entrar con Google
             </button>
@@ -108,7 +106,7 @@ try:
         ruta_profe = os.path.join(carpeta_raiz, nombre_carpeta)
         if not os.path.exists(ruta_profe): os.makedirs(ruta_profe)
 
-        # Generar Ficha.html con el diseño de la imagen que me pasaste
+        # GENERAR FICHA.HTML: Aquí agregamos el Teléfono con estilo profesional
         ficha_path = os.path.join(ruta_profe, "Ficha.html")
         with open(ficha_path, "w", encoding="utf-8") as f_p:
             f_p.write(f"""
@@ -120,32 +118,35 @@ try:
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
                 <style>
                     body {{ background: #f4f7f6; padding: 40px; font-family: 'Segoe UI', sans-serif; }}
-                    .ficha-card {{ background: white; border-radius: 15px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 800px; margin: auto; }}
+                    .ficha-card {{ background: white; border-radius: 15px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }}
                     .header-profe {{ border-bottom: 3px solid #007bff; padding-bottom: 15px; margin-bottom: 25px; color: #1a252f; }}
-                    .btn-volver {{ background: #1a252f; color: white; border: none; }}
+                    .dato-linea {{ padding: 12px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }}
+                    .btn-volver {{ background: #1a252f; color: white; border: none; margin-top: 20px; }}
                     .btn-volver:hover {{ background: #2c3e50; color: white; }}
                 </style>
             </head>
             <body>
-                <div class="ficha-card text-center shadow">
-                    <div class="fs-1 mb-3">👤</div>
-                    <h2 class="header-profe">Expediente del Docente</h2>
-                    <h3 class="mb-4">{nombre}</h3>
-                    <div class="text-start mx-auto" style="max-width: 400px;">
-                        <p><strong>Institución:</strong> <span class="float-end">C.E.N.S. 3-484</span></p>
-                        <p><strong>CUIL:</strong> <span class="float-end text-primary fw-bold">{cuil}</span></p>
-                        <p><strong>Teléfono:</strong> <span class="float-end">{tel}</span></p>
+                <div class="ficha-card shadow">
+                    <div class="text-center mb-3"><span style="font-size: 3rem;">👤</span></div>
+                    <h2 class="header-profe text-center">Expediente del Docente</h2>
+                    <div class="px-3">
+                        <div class="dato-linea"><strong>Nombre:</strong> <span>{nombre}</span></div>
+                        <div class="dato-linea"><strong>Institución:</strong> <span>C.E.N.S. 3-484</span></div>
+                        <div class="dato-linea"><strong>CUIL:</strong> <span class="text-primary fw-bold">{cuil}</span></div>
+                        <div class="dato-linea"><strong>Teléfono:</strong> <span>{tel}</span></div>
                     </div>
-                    <div class="alert alert-warning mt-4 py-2">
-                        <span class="me-2">📂</span> Carpeta digital en proceso de digitalización.
+                    <div class="alert alert-warning mt-4 py-2 text-center">
+                        📂 Carpeta en proceso de digitalización.
                     </div>
-                    <a href="../../index.html" class="btn btn-volver mt-3 px-4">⬅️ Regresar al Archivo</a>
+                    <div class="text-center">
+                        <a href="../../index.html" class="btn btn-volver px-4">⬅️ Regresar al Archivo</a>
+                    </div>
                 </div>
             </body>
             </html>
             """)
 
-        # Item de la lista principal
+        # Item de la lista principal (Solo CUIL para que sea más profesional)
         html_items += f"""
                 <div class="col-md-4 prof-card">
                     <a href="./{carpeta_raiz}/{nombre_carpeta}/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
@@ -159,7 +160,7 @@ try:
                     </a>
                 </div>"""
 
-    # SCRIPTS DE CIERRE: Exactamente como tu archivo original
+    # CIERRE DEL ARCHIVO INDEX.HTML
     html_fin = f"""
             </div>
         </div>
@@ -169,8 +170,7 @@ try:
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         function login() {{
-            const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider);
+            auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
         }}
         function logout() {{ auth.signOut(); }}
         function filterCards() {{
@@ -184,18 +184,11 @@ try:
         auth.onAuthStateChanged(user => {{
             const dashboard = document.getElementById('dashboard');
             const loginPage = document.getElementById('login-page');
-            if (user) {{
-                const permitidos = {emails_autorizados};
-                if (permitidos.includes(user.email)) {{
-                    loginPage.style.display = 'none';
-                    dashboard.style.display = 'block';
-                }} else {{
-                    document.getElementById('errorMsg').style.display = 'block';
-                    auth.signOut();
-                }}
+            if (user && {emails_autorizados}.includes(user.email)) {{
+                loginPage.style.display = 'none'; dashboard.style.display = 'block';
             }} else {{
-                loginPage.style.display = 'flex';
-                dashboard.style.display = 'none';
+                if(user) document.getElementById('errorMsg').style.display = 'block';
+                loginPage.style.display = 'flex'; dashboard.style.display = 'none';
             }}
         }});
     </script>
@@ -205,7 +198,7 @@ try:
     with open(archivo_html_principal, "w", encoding="utf-8") as f:
         f.write(html_inicio + html_items + html_fin)
 
-    print(f"✅ ¡Sistema restaurado y actualizado! Profesores: {len(profesores)}")
+    print(f"✅ ¡Sistema actualizado! Profesores: {len(profesores)}")
 
 except Exception as e:
     print(f"❌ Error: {e}")

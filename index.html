@@ -25,7 +25,6 @@
             font-weight: bold; border-radius: 8px; transition: 0.3s; 
             display: inline-flex; align-items: center; justify-content: center;
         }
-        .btn-google:hover { background: #f8f9fa; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-1px); }
         #dashboard { display: none; }
         .main-header { background: #1a252f; color: white; padding: 1.5rem; border-bottom: 5px solid #007bff; }
         .card-profesor { border: none; border-left: 5px solid #007bff; transition: 0.3s; cursor: pointer; text-decoration: none; color: inherit; }
@@ -38,7 +37,6 @@
         <h3 class="mb-5" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">C.E.N.S. 3-484 "Laila Abusamra"</h3>
         <div class="card login-card p-5">
             <div class="mb-4"><span style="font-size: 3rem;">🔐</span><h4 class="mt-2 fw-bold">Acceso Restringido</h4></div>
-            <p class="text-muted mb-4">Inicie sesión para gestionar la documentación docente.</p>
             <button onclick="login()" class="btn btn-google shadow-sm">
                 <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" width="22" class="me-3"> Entrar con Google
             </button>
@@ -110,8 +108,7 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         function login() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider);
+            auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
         }
         function logout() { auth.signOut(); }
         function filterCards() {
@@ -125,18 +122,11 @@
         auth.onAuthStateChanged(user => {
             const dashboard = document.getElementById('dashboard');
             const loginPage = document.getElementById('login-page');
-            if (user) {
-                const permitidos = ['marcelotoni2@gmail.com'];
-                if (permitidos.includes(user.email)) {
-                    loginPage.style.display = 'none';
-                    dashboard.style.display = 'block';
-                } else {
-                    document.getElementById('errorMsg').style.display = 'block';
-                    auth.signOut();
-                }
+            if (user && ['marcelotoni2@gmail.com'].includes(user.email)) {
+                loginPage.style.display = 'none'; dashboard.style.display = 'block';
             } else {
-                loginPage.style.display = 'flex';
-                dashboard.style.display = 'none';
+                if(user) document.getElementById('errorMsg').style.display = 'block';
+                loginPage.style.display = 'flex'; dashboard.style.display = 'none';
             }
         });
     </script>
