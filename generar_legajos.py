@@ -8,7 +8,7 @@ archivo_html_principal = "index.html"
 # 1. EMAILS AUTORIZADOS
 emails_autorizados = ["marcelotoni2@gmail.com"]
 
-# 2. CONFIGURACIÓN FIREBASE (Tus datos reales extraídos del index.html)
+# 2. CONFIGURACIÓN FIREBASE (Tus datos reales)
 firebase_config = """
   const firebaseConfig = {
     apiKey: "AIzaSyALCeluRao0L_ujIM7hQhCp9x9DahUclTg",
@@ -37,7 +37,7 @@ if not os.path.exists(carpeta_raiz):
 try:
     profesores = sorted(list(diccionario_profes.keys()))
 
-    # ENCABEZADO: Pantalla principal limpia
+    # ENCABEZADO: Pantalla principal profesional
     html_inicio = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -106,7 +106,23 @@ try:
         ruta_profe = os.path.join(carpeta_raiz, nombre_carpeta)
         if not os.path.exists(ruta_profe): os.makedirs(ruta_profe)
 
-        # GENERAR FICHA.HTML: Diseño profesional con Teléfono
+        # ESCANEAR ARCHIVOS (PDF, JPG, PNG)
+        archivos_html = ""
+        extensiones = ('.pdf', '.jpg', '.jpeg', '.png')
+        
+        archivos_en_carpeta = [f for f in os.listdir(ruta_profe) if f.lower().endswith(extensiones) and f != "Ficha.html"]
+        
+        if archivos_en_carpeta:
+            for arch in archivos_en_carpeta:
+                archivos_html += f"""
+                <div class="dato-linea">
+                    <strong>{arch}</strong> 
+                    <a href="./{arch}" target="_blank" class="btn btn-sm btn-outline-primary">Ver Documento</a>
+                </div>"""
+        else:
+            archivos_html = '<div class="alert alert-warning py-2 text-center">📂 Carpeta en proceso de digitalización.</div>'
+
+        # GENERAR FICHA.HTML: Con datos y lista de archivos
         ficha_path = os.path.join(ruta_profe, "Ficha.html")
         with open(ficha_path, "w", encoding="utf-8") as f_p:
             f_p.write(f"""
@@ -121,22 +137,21 @@ try:
                     .ficha-card {{ background: white; border-radius: 15px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }}
                     .header-profe {{ border-bottom: 3px solid #007bff; padding-bottom: 15px; margin-bottom: 25px; color: #1a252f; }}
                     .dato-linea {{ padding: 12px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }}
-                    .btn-volver {{ background: #1a252f; color: white; border: none; margin-top: 20px; transition: 0.3s; }}
-                    .btn-volver:hover {{ background: #2c3e50; color: white; transform: scale(1.05); }}
+                    .btn-volver {{ background: #1a252f; color: white; border: none; margin-top: 20px; }}
                 </style>
             </head>
             <body>
                 <div class="ficha-card shadow">
                     <div class="text-center mb-3"><span style="font-size: 3rem;">👤</span></div>
                     <h2 class="header-profe text-center">Expediente del Docente</h2>
-                    <div class="px-3">
+                    <div class="px-3 mb-4">
                         <div class="dato-linea"><strong>Nombre:</strong> <span>{nombre}</span></div>
-                        <div class="dato-linea"><strong>Institución:</strong> <span>C.E.N.S. 3-484</span></div>
                         <div class="dato-linea"><strong>CUIL:</strong> <span class="text-primary fw-bold">{cuil}</span></div>
                         <div class="dato-linea"><strong>Teléfono:</strong> <span>{tel}</span></div>
                     </div>
-                    <div class="alert alert-warning mt-4 py-2 text-center">
-                        <span class="me-2">📂</span> Carpeta digital en proceso de digitalización.
+                    <h5 class="fw-bold mb-3">📄 Documentación Digital:</h5>
+                    <div class="px-3">
+                        {archivos_html}
                     </div>
                     <div class="text-center">
                         <a href="../../index.html" class="btn btn-volver px-4">⬅️ Regresar al Archivo</a>
@@ -194,7 +209,7 @@ try:
 
     with open(archivo_html_principal, "w", encoding="utf-8") as f:
         f.write(html_inicio + html_items + html_fin)
-    print(f"✅ ¡Todo listo! Se actualizaron {len(profesores)} archivos.")
+    print(f"✅ ¡Todo listo! Se actualizaron {len(profesores)} legajos.")
 
 except Exception as e:
     print(f"❌ Error: {e}")
