@@ -8,7 +8,7 @@ archivo_html_principal = "index.html"
 # 1. EMAILS AUTORIZADOS
 emails_autorizados = ["marcelotoni2@gmail.com"]
 
-# 2. CONFIGURACIÓN FIREBASE (Tus datos reales)
+# 2. CONFIGURACIÓN FIREBASE
 firebase_config = """
   const firebaseConfig = {
     apiKey: "AIzaSyALCeluRao0L_ujIM7hQhCp9x9DahUclTg",
@@ -21,7 +21,7 @@ firebase_config = """
   };
 """
 
-# Leer datos de los profesores (CUIL y Teléfono)
+# Leer datos de los profesores
 diccionario_profes = {}
 if os.path.exists(archivo_datos):
     with open(archivo_datos, "r", encoding="utf-8") as f:
@@ -106,23 +106,25 @@ try:
         ruta_profe = os.path.join(carpeta_raiz, nombre_carpeta)
         if not os.path.exists(ruta_profe): os.makedirs(ruta_profe)
 
-        # ESCANEAR ARCHIVOS (PDF, JPG, PNG)
+        # ESCANEAR ARCHIVOS Y LIMPIAR NOMBRES (Sin .pdf ni .jpg)
         archivos_html = ""
         extensiones = ('.pdf', '.jpg', '.jpeg', '.png')
-        
         archivos_en_carpeta = [f for f in os.listdir(ruta_profe) if f.lower().endswith(extensiones) and f != "Ficha.html"]
         
         if archivos_en_carpeta:
             for arch in archivos_en_carpeta:
+                # Quitar extensión y cambiar guiones bajos por espacios
+                nombre_limpio = os.path.splitext(arch)[0].replace("_", " ")
+                
                 archivos_html += f"""
                 <div class="dato-linea">
-                    <strong>{arch}</strong> 
-                    <a href="./{arch}" target="_blank" class="btn btn-sm btn-outline-primary">Ver Documento</a>
+                    <strong style="text-transform: capitalize;">{nombre_limpio}</strong> 
+                    <a href="./{arch}" target="_blank" class="btn btn-sm btn-outline-primary px-3">Ver Documento</a>
                 </div>"""
         else:
             archivos_html = '<div class="alert alert-warning py-2 text-center">📂 Carpeta en proceso de digitalización.</div>'
 
-        # GENERAR FICHA.HTML: Con datos y lista de archivos
+        # GENERAR FICHA.HTML
         ficha_path = os.path.join(ruta_profe, "Ficha.html")
         with open(ficha_path, "w", encoding="utf-8") as f_p:
             f_p.write(f"""
@@ -161,7 +163,6 @@ try:
             </html>
             """)
 
-        # Item principal: Solo Nombre y CUIL
         html_items += f"""
                 <div class="col-md-4 prof-card">
                     <a href="./{carpeta_raiz}/{nombre_carpeta}/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
@@ -209,7 +210,7 @@ try:
 
     with open(archivo_html_principal, "w", encoding="utf-8") as f:
         f.write(html_inicio + html_items + html_fin)
-    print(f"✅ ¡Todo listo! Se actualizaron {len(profesores)} legajos.")
+    print(f"✅ ¡Todo listo! Se actualizaron {len(profesores)} legajos con nombres limpios.")
 
 except Exception as e:
     print(f"❌ Error: {e}")
