@@ -77,6 +77,7 @@ try:
         <h3 class="mb-5" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">C.E.N.S. 3-484 "Laila Abusamra"</h3>
         <div class="card login-card p-5">
             <div class="mb-4"><span style="font-size: 3rem;">🔐</span><h4 class="mt-2 fw-bold">Acceso Restringido</h4></div>
+            <p class="text-muted mt-3">Para acceder a los legajos, por favor identifíquese con su cuenta autorizada.</p>
             <button onclick="login()" class="btn btn-google shadow-sm">
                 <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" width="22" class="me-3"> Entrar con Google
             </button>
@@ -93,7 +94,7 @@ try:
         <div class="container mt-4">
             <div class="input-group mb-4 shadow-sm">
                 <span class="input-group-text bg-white border-end-0">🔍</span>
-                <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Buscar profesor por nombre..." onkeyup="filterCards()">
+                <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Buscar por nombre..." onkeyup="filterCards()">
             </div>
             <div class="row g-3" id="profList">
     """
@@ -145,7 +146,7 @@ try:
             <body>
                 <div class="ficha-card shadow">
                     <div class="text-center mb-3"><span style="font-size: 3rem;">👤</span></div>
-                    <h2 class="header-profe text-center">Expediente del Docente</h2>
+                    <h2 class="header-profe text-center">Expediente</h2>
                     <div class="px-3 mb-4">
                         <div class="dato-linea"><strong>Nombre:</strong> <span>{nombre}</span></div>
                         <div class="dato-linea"><strong>CUIL:</strong> <span class="text-primary fw-bold">{cuil}</span></div>
