@@ -6,7 +6,7 @@ carpeta_raiz = "Legajos"
 archivo_html_principal = "index.html"
 
 # 1. EMAILS AUTORIZADOS
-emails_autorizados = ["marcelotoni2@gmail.com", "registromauro@gmail.com", "mlauranavia@gmailcom", "arracintia@gmail.com", "florencialipari2@gmail.com", "belenmarinaro@gmail.com", "ritachamorro86@gmail.com", "marielita0273@gmail.com", "shaylem9307@gmail.com", "saganiaselenacarolina@gmail.com", "julianbaglio@gmail.com", "lilianarossi14@gmail.com", "danieldelgadillo55@gmail.com", "iris.tony24@gmailcom", "maridelourdes74@gmail.com"]
+emails_autorizados = ["marcelotoni2@gmail.com", "registromauro@gmail.com", "mlauranavia@gmailcom", "arracintia@gmail.com", "florencialipari2@gmail.com", "belenmarinaro@gmail.com", "ritachamorro86@gmail.com", "marielita0273@gmail.com", "shaylem9307@gmail.com", "saganiaselenacarolina@gmail.com", "julianbaglio@gmail.com", "lilianarossi14@gmail.com", "danieldelgadillo55@gmail.com", "iris.tony24@gmailcom", "maridelourdes74@gmail.com", "beluquiroga1985@gmailcom"]
 
 # 2. CONFIGURACIÓN FIREBASE
 firebase_config = """
