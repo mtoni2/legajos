@@ -98,8 +98,10 @@ try:
             background-size: cover; color: white; text-align: center;
         }}
         .login-card {{ border: none; border-radius: 20px; max-width: 450px; width: 100%; color: #333; background: rgba(255, 255, 255, 0.95); }}
-        #dashboard {{ display: none; }}
-        padding-bottom: 100px;
+        #dashboard {{ 
+            display: none; 
+            padding-bottom: 120px; 
+        }}
         .main-header {{ background: #1a252f; color: white; padding: 1.5rem; border-bottom: 5px solid #007bff; }}
         .card-profesor {{ border: none; border-left: 5px solid #007bff; transition: 0.3s; cursor: pointer; text-decoration: none; color: inherit; }}
         .card-profesor:hover {{ transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }}
