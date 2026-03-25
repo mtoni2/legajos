@@ -11,17 +11,22 @@
         body { background-color: #f4f7f6; min-height: 100vh; font-family: 'Segoe UI', sans-serif; }
         #login-page {
             display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1568667256549-094345857637') no-repeat center fixed;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1568667256549-094345857637') no-repeat center fixed;
             background-size: cover; color: white; text-align: center;
         }
         .login-card { border: none; border-radius: 20px; max-width: 450px; width: 100%; color: #333; background: rgba(255, 255, 255, 0.95); }
+        
+        /* Ajuste de scroll solicitado */
         #dashboard { 
             display: none; 
             padding-bottom: 120px; 
         }
+        
         .main-header { background: #1a252f; color: white; padding: 1.5rem; border-bottom: 5px solid #007bff; }
         .card-profesor { border: none; border-left: 5px solid #007bff; transition: 0.3s; cursor: pointer; text-decoration: none; color: inherit; }
         .card-profesor:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .btn-google { background: white; color: #444; border: 1px solid #ddd; font-weight: bold; border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -29,8 +34,10 @@
         <h1 class="mb-5 fw-bold" style="text-shadow: 2px 2px 10px #000;">Sistema de Legajos Digitales</h1>
         <div class="card login-card p-5 shadow">
             <h4 class="mb-4 fw-bold">🔐 Acceso al Sistema</h4>
-            <button onclick="login()" class="btn btn-dark btn-lg w-100">Entrar con Google</button>
-            <p id="errorMsg" class="text-danger mt-3" style="display:none; font-weight: bold;">⚠️ Usuario no autorizado para este sistema.</p>
+            <button onclick="login()" class="btn btn-google btn-lg w-100 shadow-sm">
+                <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" width="20" class="me-2"> Entrar con Google
+            </button>
+            <p id="errorMsg" class="text-danger mt-3" style="display:none; font-weight: bold;">⚠️ Usuario no autorizado.</p>
         </div>
     </div>
     <div id="dashboard">
@@ -41,325 +48,593 @@
             </div>
         </div>
         <div class="container mt-4">
-            <input type="text" id="searchInput" class="form-control mb-4 shadow-sm" placeholder="Buscar por nombre..." onkeyup="filterCards()">
+            <div class="input-group mb-4 shadow-sm">
+                <span class="input-group-text bg-white border-end-0">🔍</span>
+                <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Buscar por nombre..." onkeyup="filterCards()">
+            </div>
             <div class="row g-3" id="profList">
     
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/ALFARO_PATRICIA_DEL_LUJAN/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">ALFARO PATRICIA DEL LUJAN</h6>
-                        <small class="text-muted">CUIL: 27-22699039-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">ALFARO PATRICIA DEL LUJAN</h6>
+                                <small class="text-muted">CUIL: 27-22699039-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/AMARFIL_ADRIANA_CRISTINA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">AMARFIL ADRIANA CRISTINA</h6>
-                        <small class="text-muted">CUIL: 27-27036448-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">AMARFIL ADRIANA CRISTINA</h6>
+                                <small class="text-muted">CUIL: 27-27036448-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/ARRA_CINTIA_LORENA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">ARRA CINTIA LORENA</h6>
-                        <small class="text-muted">CUIL: 27-26681262-6</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">ARRA CINTIA LORENA</h6>
+                                <small class="text-muted">CUIL: 27-26681262-6</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/AZCURRA_MARIA_ANGELINA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">AZCURRA MARIA ANGELINA</h6>
-                        <small class="text-muted">CUIL: 27-18399222-3</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">AZCURRA MARIA ANGELINA</h6>
+                                <small class="text-muted">CUIL: 27-18399222-3</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/BARRERA_IRENE_LOURDES/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">BARRERA IRENE LOURDES</h6>
-                        <small class="text-muted">CUIL: 27-25237007-8</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">BARRERA IRENE LOURDES</h6>
+                                <small class="text-muted">CUIL: 27-25237007-8</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/BAUCO_FABIAN/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">BAUCO FABIAN</h6>
-                        <small class="text-muted">CUIL: 20-28844574-6</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">BAUCO FABIAN</h6>
+                                <small class="text-muted">CUIL: 20-28844574-6</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/BONTORNO_MARIA_VIRGINIA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">BONTORNO MARIA VIRGINIA</h6>
-                        <small class="text-muted">CUIL: 27-26241410-3</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">BONTORNO MARIA VIRGINIA</h6>
+                                <small class="text-muted">CUIL: 27-26241410-3</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/CARMONA_JOSE_MATIAS/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">CARMONA JOSE MATIAS</h6>
-                        <small class="text-muted">CUIL: 20-33462937-7</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">CARMONA JOSE MATIAS</h6>
+                                <small class="text-muted">CUIL: 20-33462937-7</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/CHAMACHE_GARCIA_KATIA_LIZBETH/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">CHAMACHE GARCIA KATIA LIZBETH</h6>
-                        <small class="text-muted">CUIL: 20-19124743-5</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">CHAMACHE GARCIA KATIA LIZBETH</h6>
+                                <small class="text-muted">CUIL: 20-19124743-5</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/CHAMORRO_RITA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">CHAMORRO RITA</h6>
-                        <small class="text-muted">CUIL: 27-31770898-5</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">CHAMORRO RITA</h6>
+                                <small class="text-muted">CUIL: 27-31770898-5</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/COLLAO_NIDIA_EMILIA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">COLLAO NIDIA EMILIA</h6>
-                        <small class="text-muted">CUIL: 23-23210665-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">COLLAO NIDIA EMILIA</h6>
+                                <small class="text-muted">CUIL: 23-23210665-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/CONTI_JULIETA_ANTONELA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">CONTI JULIETA ANTONELA</h6>
-                        <small class="text-muted">CUIL: 27-31287213-2</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">CONTI JULIETA ANTONELA</h6>
+                                <small class="text-muted">CUIL: 27-31287213-2</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/CRIPPA_CECILIA_ANDREA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">CRIPPA CECILIA ANDREA</h6>
-                        <small class="text-muted">CUIL: 27-22621030-5</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">CRIPPA CECILIA ANDREA</h6>
+                                <small class="text-muted">CUIL: 27-22621030-5</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/DELGADILLO_DANIEL_ALEJANDRO/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">DELGADILLO DANIEL ALEJANDRO</h6>
-                        <small class="text-muted">CUIL: 23-25091730-9</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">DELGADILLO DANIEL ALEJANDRO</h6>
+                                <small class="text-muted">CUIL: 23-25091730-9</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/DI_CESARE_MARIA_LAURA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">DI CESARE MARIA LAURA</h6>
-                        <small class="text-muted">CUIL: 27-28443892-8</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">DI CESARE MARIA LAURA</h6>
+                                <small class="text-muted">CUIL: 27-28443892-8</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/ESCUDERO_JUAN_MANUEL/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">ESCUDERO JUAN MANUEL</h6>
-                        <small class="text-muted">CUIL: 20-30343011-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">ESCUDERO JUAN MANUEL</h6>
+                                <small class="text-muted">CUIL: 20-30343011-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/ESPINOZA_SILVIO_CRISTIAN/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">ESPINOZA SILVIO CRISTIAN</h6>
-                        <small class="text-muted">CUIL: 20-24207858-7</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">ESPINOZA SILVIO CRISTIAN</h6>
+                                <small class="text-muted">CUIL: 20-24207858-7</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/ESQUIVEL_VANINA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">ESQUIVEL VANINA</h6>
-                        <small class="text-muted">CUIL: 23-28434995-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">ESQUIVEL VANINA</h6>
+                                <small class="text-muted">CUIL: 23-28434995-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/FONTEMACHI_PAMELA_LETICIA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">FONTEMACHI PAMELA LETICIA</h6>
-                        <small class="text-muted">CUIL: 23-28542355-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">FONTEMACHI PAMELA LETICIA</h6>
+                                <small class="text-muted">CUIL: 23-28542355-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/GARRIDO_MARIA_JULIETA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">GARRIDO MARIA JULIETA</h6>
-                        <small class="text-muted">CUIL: 27-27552042-5</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">GARRIDO MARIA JULIETA</h6>
+                                <small class="text-muted">CUIL: 27-27552042-5</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/GELVEZ_NATALIA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">GELVEZ NATALIA</h6>
-                        <small class="text-muted">CUIL: 27-24225415-0</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">GELVEZ NATALIA</h6>
+                                <small class="text-muted">CUIL: 27-24225415-0</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/GOMEZ_LETICIA_ELIANA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">GOMEZ LETICIA ELIANA</h6>
-                        <small class="text-muted">CUIL: 27-31486447-1</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">GOMEZ LETICIA ELIANA</h6>
+                                <small class="text-muted">CUIL: 27-31486447-1</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/GUIÑAZU_JUAN_ERNESTO/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">GUIÑAZU JUAN ERNESTO</h6>
-                        <small class="text-muted">CUIL: 20-35876214-0</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">GUIÑAZU JUAN ERNESTO</h6>
+                                <small class="text-muted">CUIL: 20-35876214-0</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/LIPARI_FLORENCIA_DAIANA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">LIPARI FLORENCIA DAIANA</h6>
-                        <small class="text-muted">CUIL: 27-36416507-8</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">LIPARI FLORENCIA DAIANA</h6>
+                                <small class="text-muted">CUIL: 27-36416507-8</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/LUCERO_ISAAC_ROBERTO_AARON/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">LUCERO ISAAC ROBERTO AARON</h6>
-                        <small class="text-muted">CUIL: 20-37520689-8</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">LUCERO ISAAC ROBERTO AARON</h6>
+                                <small class="text-muted">CUIL: 20-37520689-8</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/MARINARO_CUCHIETTI_MARIA_BELEN/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">MARINARO CUCHIETTI MARIA BELEN</h6>
-                        <small class="text-muted">CUIL: 27-31286439-3</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">MARINARO CUCHIETTI MARIA BELEN</h6>
+                                <small class="text-muted">CUIL: 27-31286439-3</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/MARTINEZ_ENRIQUE_JAVIER_RAMÓN/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">MARTINEZ ENRIQUE JAVIER RAMÓN</h6>
-                        <small class="text-muted">CUIL: 20-22154270-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">MARTINEZ ENRIQUE JAVIER RAMÓN</h6>
+                                <small class="text-muted">CUIL: 20-22154270-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/MARTINEZ_GUSTAVO_JAVIER/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">MARTINEZ GUSTAVO JAVIER</h6>
-                        <small class="text-muted">CUIL: 20-21916816-1</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">MARTINEZ GUSTAVO JAVIER</h6>
+                                <small class="text-muted">CUIL: 20-21916816-1</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/MENDOLA_MICHEL_NAYRA_RUHAMA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">MENDOLA MICHEL NAYRA RUHAMA</h6>
-                        <small class="text-muted">CUIL: 27-19009497-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">MENDOLA MICHEL NAYRA RUHAMA</h6>
+                                <small class="text-muted">CUIL: 27-19009497-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/MENDOZA_JOSE_JORGE/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">MENDOZA JOSE JORGE</h6>
-                        <small class="text-muted">CUIL: 20-92892082-9</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">MENDOZA JOSE JORGE</h6>
+                                <small class="text-muted">CUIL: 20-92892082-9</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/MONTENEGRO_IVANA_LOURDES/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">MONTENEGRO IVANA LOURDES</h6>
-                        <small class="text-muted">CUIL: 27-29425372-1</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">MONTENEGRO IVANA LOURDES</h6>
+                                <small class="text-muted">CUIL: 27-29425372-1</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/MORALES_MARIA_DE_LOURDES/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">MORALES MARIA DE LOURDES</h6>
-                        <small class="text-muted">CUIL: 27-24382450-3</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">MORALES MARIA DE LOURDES</h6>
+                                <small class="text-muted">CUIL: 27-24382450-3</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/NAVIA_MARÍA_LAURA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">NAVIA MARÍA LAURA</h6>
-                        <small class="text-muted">CUIL: 27-26361124-7</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">NAVIA MARÍA LAURA</h6>
+                                <small class="text-muted">CUIL: 27-26361124-7</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/OLGUIN_MOYANO_ROMINA_BELEN/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">OLGUIN MOYANO ROMINA BELEN</h6>
-                        <small class="text-muted">CUIL: 27-36746607-9</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">OLGUIN MOYANO ROMINA BELEN</h6>
+                                <small class="text-muted">CUIL: 27-36746607-9</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/ORTUBIA_DIAZ_ELIANA_CRISTINA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">ORTUBIA DIAZ ELIANA CRISTINA</h6>
-                        <small class="text-muted">CUIL: 27-32019610-3</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">ORTUBIA DIAZ ELIANA CRISTINA</h6>
+                                <small class="text-muted">CUIL: 27-32019610-3</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/PAYA_ANDRES_FABIAN/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">PAYA ANDRES FABIAN</h6>
-                        <small class="text-muted">CUIL: 20-27063541-6</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">PAYA ANDRES FABIAN</h6>
+                                <small class="text-muted">CUIL: 20-27063541-6</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/PEREA_ROMINA_JUDITH/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">PEREA ROMINA JUDITH</h6>
-                        <small class="text-muted">CUIL: 23-28407196-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">PEREA ROMINA JUDITH</h6>
+                                <small class="text-muted">CUIL: 23-28407196-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/PESSINA_MALEN_FERNANDA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">PESSINA MALEN FERNANDA</h6>
-                        <small class="text-muted">CUIL: 27-32352342-3</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">PESSINA MALEN FERNANDA</h6>
+                                <small class="text-muted">CUIL: 27-32352342-3</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/QUIROGA_MARIA_BELEN/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">QUIROGA MARIA BELEN</h6>
-                        <small class="text-muted">CUIL: 27-31855216-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">QUIROGA MARIA BELEN</h6>
+                                <small class="text-muted">CUIL: 27-31855216-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/RIVERA_NOELIA_BETSABE/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">RIVERA NOELIA BETSABE</h6>
-                        <small class="text-muted">CUIL: 27-29306955-2</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">RIVERA NOELIA BETSABE</h6>
+                                <small class="text-muted">CUIL: 27-29306955-2</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/RODRIGUEZ_MARÍA_SOLEDAD/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">RODRIGUEZ MARÍA SOLEDAD</h6>
-                        <small class="text-muted">CUIL: 27-37002669-1</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">RODRIGUEZ MARÍA SOLEDAD</h6>
+                                <small class="text-muted">CUIL: 27-37002669-1</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/ROMANO_FLAVIA_ANABEL/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">ROMANO FLAVIA ANABEL</h6>
-                        <small class="text-muted">CUIL: 27-26536143-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">ROMANO FLAVIA ANABEL</h6>
+                                <small class="text-muted">CUIL: 27-26536143-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/ROSSI_LILIANA_GABRIELA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">ROSSI LILIANA GABRIELA</h6>
-                        <small class="text-muted">CUIL: 27-23488298-3</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">ROSSI LILIANA GABRIELA</h6>
+                                <small class="text-muted">CUIL: 27-23488298-3</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/SAGANNIAS_ELENA/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">SAGANNIAS ELENA</h6>
-                        <small class="text-muted">CUIL: 27-22618894-6</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">SAGANNIAS ELENA</h6>
+                                <small class="text-muted">CUIL: 27-22618894-6</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/TAPIA_SABRINA_JACQUELINE/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">TAPIA SABRINA JACQUELINE</h6>
-                        <small class="text-muted">CUIL: 27-32975602-0</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">TAPIA SABRINA JACQUELINE</h6>
+                                <small class="text-muted">CUIL: 27-32975602-0</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/TOLEDO_GISELA_ELIZABETH/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">TOLEDO GISELA ELIZABETH</h6>
-                        <small class="text-muted">CUIL: 27-32807312-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">TOLEDO GISELA ELIZABETH</h6>
+                                <small class="text-muted">CUIL: 27-32807312-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/TONINI_ALBERTO_MARCELO/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">TONINI ALBERTO MARCELO</h6>
-                        <small class="text-muted">CUIL: 20-20810559-1</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">TONINI ALBERTO MARCELO</h6>
+                                <small class="text-muted">CUIL: 20-20810559-1</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/TORRES_SANDRA_ESTER/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">TORRES SANDRA ESTER</h6>
-                        <small class="text-muted">CUIL: 27-30542323-3</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">TORRES SANDRA ESTER</h6>
+                                <small class="text-muted">CUIL: 27-30542323-3</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/ULLOA_CRISTIAN_MAURICIO/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">ULLOA CRISTIAN MAURICIO</h6>
-                        <small class="text-muted">CUIL: 20-23067220-3</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">ULLOA CRISTIAN MAURICIO</h6>
+                                <small class="text-muted">CUIL: 20-23067220-3</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/VARGAS_MARIA_SOLEDAD/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">VARGAS MARIA SOLEDAD</h6>
-                        <small class="text-muted">CUIL: 27-28487811-1</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">VARGAS MARIA SOLEDAD</h6>
+                                <small class="text-muted">CUIL: 27-28487811-1</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/VEGA_ROLANDO_JAVIER/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">VEGA ROLANDO JAVIER</h6>
-                        <small class="text-muted">CUIL: 20-18012535-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">VEGA ROLANDO JAVIER</h6>
+                                <small class="text-muted">CUIL: 20-18012535-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/VEIGA_MARTINEZ_VALERIA_LOURDES/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">VEIGA MARTINEZ VALERIA LOURDES</h6>
-                        <small class="text-muted">CUIL: 27-31318720-4</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">VEIGA MARTINEZ VALERIA LOURDES</h6>
+                                <small class="text-muted">CUIL: 27-31318720-4</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 prof-card">
                     <a href="./Legajos/VERA_JUAN_JOSÉ/Ficha.html" class="card card-profesor p-3 shadow-sm h-100">
-                        <h6 class="mb-0 fw-bold">VERA JUAN JOSÉ</h6>
-                        <small class="text-muted">CUIL: 20-28401361-2</small>
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 me-3">📁</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">VERA JUAN JOSÉ</h6>
+                                <small class="text-muted">CUIL: 20-28401361-2</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -384,6 +659,7 @@
 
         function login() { auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); }
         function logout() { auth.signOut(); location.reload(); }
+        
         function filterCards() {
             let q = document.getElementById('searchInput').value.toLowerCase();
             document.querySelectorAll('.prof-card').forEach(c => {
@@ -394,10 +670,13 @@
         auth.onAuthStateChanged(user => {
             if (user) {
                 const email = user.email.toLowerCase();
+                // Verificación de Administrador
                 if (admins.includes(email)) {
                     document.getElementById('login-page').style.display = 'none';
                     document.getElementById('dashboard').style.display = 'block';
-                } else {
+                } 
+                // Verificación de Personal (Redirección Automática)
+                else {
                     const match = personal.find(p => p.e === email);
                     if (match) window.location.href = `./Legajos/` + match.f + "/Ficha.html";
                     else document.getElementById('errorMsg').style.display = 'block';
