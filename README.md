@@ -5,6 +5,7 @@ Este proyecto es una plataforma web profesional diseñada para la gestión y con
 ## 🚀 Acceso al Sistema
 El sistema está desplegado y se puede acceder mediante el siguiente enlace:
 🔗 **[https://mtoni2.github.io/legajos/](https://mtoni2.github.io/legajos/)**
+y **[https://legajos-escuela.web.app/index.html](https://legajos-escuela.web.app/index.html)**
 
 > **Mensaje de Seguridad:** Al ingresar, verá el mensaje: *"Para acceder a los legajos, por favor identifíquese con su cuenta autorizada"*. Solo los correos electrónicos permitidos pueden visualizar el contenido.
 
