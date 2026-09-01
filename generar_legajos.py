@@ -11,7 +11,6 @@ archivo_datos_personal = "datos_personal.txt"
 carpeta_raiz = "Legajos"
 archivo_html_principal = "index.html"
 
-<<<<<<< Updated upstream
 # ARCHIVO DEL LOGO (Marcelo: Asegurate que se llame logo.png en la carpeta)
 ARCHIVO_LOGO = "logo.png"
 
@@ -25,12 +24,6 @@ MI_EMAIL = "marcelotoni2@gmail.com"
 # =================================================================
 # Mantenemos los IDs originales del proyecto legajos-escuela para
 # que la autenticación con Google siga funcionando perfectamente.
-=======
-# Tu número de WhatsApp para recibir la documentación
-MI_WHATSAPP = "5492615458021" 
-
-# CONFIGURACIÓN FIREBASE (Hosting y Auth - 100% GRATIS)
->>>>>>> Stashed changes
 firebase_config = """
   const firebaseConfig = {
     apiKey: "AIzaSyALCeluRao0L_ujIM7hQhCp9x9DahUclTg",
@@ -48,16 +41,12 @@ firebase_config = """
 # =================================================================
 
 def corregir_email(email):
-<<<<<<< Updated upstream
     """
     Limpia y normaliza los correos electrónicos para evitar errores 
     de acceso por espacios accidentales o errores de tipeo comunes.
     """
     if not email:
         return ""
-=======
-    """Corrige errores comunes de escritura en los correos electrónicos."""
->>>>>>> Stashed changes
     email = email.strip().lower()
     # Correcciones de dominios mal escritos detectados en el uso diario
     email = email.replace("gmial.com", "gmail.com")
@@ -65,7 +54,6 @@ def corregir_email(email):
     email = email.replace("gamil.com", "gmail.com")
     return email
 
-<<<<<<< Updated upstream
 def limpiar_nombre_archivo(nombre_raw):
     """
     Toma el nombre del archivo real (ej: dni_frente.pdf) y lo 
@@ -96,13 +84,10 @@ def buscar_y_limpiar_nombre(carpeta, palabras_clave):
             
     return None, None
 # Estructuras de datos para organizar la información leída de los TXT
-=======
->>>>>>> Stashed changes
 diccionario_total = {}
 lista_admins = []
 mapeo_personal = []
 
-<<<<<<< Updated upstream
 def procesar_fuentes_de_datos(nombre_archivo, es_admin):
     if not os.path.exists(nombre_archivo):
         print(f"⚠️ Aviso: No se encontró el archivo: {nombre_archivo}")
@@ -167,51 +152,6 @@ procesar_fuentes_de_datos(archivo_datos_admin, True)
 procesar_fuentes_de_datos(archivo_datos_personal, False)
 
 # 2. Asegurar que la carpeta raíz de Legajos exista
-=======
-def procesar_fuentes(nombre_archivo, es_admin):
-    """Lee los archivos TXT y organiza la información de los usuarios."""
-    if not os.path.exists(nombre_archivo):
-        print(f"⚠️ Advertencia: No se encontró {nombre_archivo}")
-        return
-    
-    with open(nombre_archivo, "r", encoding="utf-8") as f:
-        for linea in f:
-            linea = linea.strip()
-            if not linea or linea.startswith("[source"):
-                continue
-            try:
-                partes = linea.split(",")
-                # Extraer CUIL y Nombre del primer segmento
-                primer_segmento = partes[0].split(" ", 1)
-                if len(primer_segmento) == 2:
-                    cuil = primer_segmento[0].strip()
-                    nombre = primer_segmento[1].strip()
-                    tel = partes[1].strip() if len(partes) > 1 else "S/D"
-                    email = corregir_email(partes[2]) if len(partes) > 2 else ""
-                    
-                    folder_name = nombre.replace(" ", "_").upper()
-                    
-                    if email:
-                        if es_admin:
-                            lista_admins.append(email)
-                        else:
-                            mapeo_personal.append({"e": email, "f": folder_name})
-                    
-                    diccionario_total[nombre] = {
-                        "cuil": cuil,
-                        "tel": tel,
-                        "folder": folder_name
-                    }
-            except Exception as e:
-                print(f"Error procesando línea: {linea} -> {e}")
-                continue
-
-# Ejecutar el procesamiento
-procesar_fuentes(archivo_datos_admin, True)
-procesar_fuentes(archivo_datos_personal, False)
-
-# Crear carpeta raíz si no existe
->>>>>>> Stashed changes
 if not os.path.exists(carpeta_raiz):
     os.makedirs(carpeta_raiz)
 
@@ -219,28 +159,20 @@ try:
     # Ordenar alfabéticamente para que el panel principal sea fácil de usar
     nombres_ordenados = sorted(list(diccionario_total.keys()))
 
-<<<<<<< Updated upstream
     # --- INICIO DE CONSTRUCCIÓN DEL PANEL PRINCIPAL (index.html) ---
-=======
-    # --- GENERACIÓN DE INDEX.HTML (PANEL ADMINISTRADOR PROFESIONAL) ---
->>>>>>> Stashed changes
     html_inicio = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archivero Digital - C.E.N.S. Laila Abusamra</title>
-<<<<<<< Updated upstream
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="favicon.ico">
-=======
->>>>>>> Stashed changes
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
     <style>
-<<<<<<< Updated upstream
         body {{ background-color: #f4f7f6; min-height: 100vh; font-family: 'Segoe UI', Tahoma, sans-serif; }}
         
         /* ESTILO PORTADA CON LOGO Y FONDO MEJORADO */
@@ -270,39 +202,16 @@ try:
         .main-header {{ background: #1a252f; color: white; padding: 1.5rem; border-bottom: 5px solid #007bff; }}
         .card-profesor {{ border: none; border-left: 5px solid #007bff; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; background: white; }}
         .card-profesor:hover {{ transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-left-color: #25D366; }}
-=======
-        body {{ background-color: #f4f7f6; min-height: 100vh; font-family: 'Segoe UI', Roboto, sans-serif; }}
-        #login-page {{
-            display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&q=80&w=1000') no-repeat center fixed;
-            background-size: cover; color: white; text-align: center;
-        }}
-        .login-card {{ border: none; border-radius: 20px; max-width: 450px; width: 90%; color: #333; background: rgba(255, 255, 255, 0.95); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }}
-        #dashboard {{ display: none; padding-bottom: 100px; }}
-        .main-header {{ background: #1a252f; color: white; padding: 1.5rem; border-bottom: 5px solid #007bff; }}
-        .card-profesor {{ border: none; border-left: 5px solid #007bff; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; background: white; }}
-        .card-profesor:hover {{ transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); border-left-color: #25D366; }}
-        .search-container {{ position: sticky; top: 0; z-index: 1000; background: #f4f7f6; padding: 15px 0; }}
->>>>>>> Stashed changes
     </style>
 </head>
 <body>
     <div id="login-page">
-<<<<<<< Updated upstream
         <div class="card login-card text-center">
             <img src="{ARCHIVO_LOGO}" alt="Logo CENS" class="logo-escuela mx-auto d-block">
             <h4 class="mb-2 fw-bold">BIENVENIDO</h4>
             <p class="text-muted small mb-4">Sistema de Legajos Digitales <br> <b>C.E.N.S. 3-484 "Laila Abusamra"</b></p>
             <button onclick="login()" class="btn btn-primary btn-lg w-100 shadow-sm rounded-pill py-3">Entrar con Google</button>
             <p id="errorMsg" class="text-danger mt-3" style="display:none; font-weight: bold;">⚠️ Error: Usuario no autorizado.</p>
-=======
-        <h1 class="mb-4 fw-bold" style="text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">Archivero Digital Escolar</h1>
-        <div class="card login-card p-5">
-            <h4 class="mb-4 fw-bold">🔐 Acceso Seguro</h4>
-            <p class="text-muted mb-4">Ingresá con tu cuenta institucional para gestionar los legajos.</p>
-            <button onclick="login()" class="btn btn-dark btn-lg w-100 shadow-sm">Entrar con Google</button>
-            <p id="errorMsg" class="text-danger mt-3" style="display:none; font-weight: bold;">⚠️ Usuario no autorizado para este sistema.</p>
->>>>>>> Stashed changes
         </div>
         <p class="mt-4 small opacity-75">Provincia de Mendoza, Argentina</p> 
         <p class="mt-4 small opacity-75"><b>© 2026 - Desarrollado por Marcelo Tonini</b></p>
@@ -313,7 +222,6 @@ try:
             <div class="container d-flex justify-content-between align-items-center">
                 <div>
                     <h2 class="mb-0 fw-bold">🗃️ Panel de Gestión</h2>
-<<<<<<< Updated upstream
                     <p class="mb-0 opacity-75 small text-uppercase">Área Administrativa</p>
                 </div>
                 <button onclick="logout()" class="btn btn-outline-light px-4 rounded-pill">Cerrar Sesión</button>
@@ -323,19 +231,6 @@ try:
         <div class="container mt-4">
             <input type="text" id="searchInput" class="form-control form-control-lg shadow-sm rounded-pill mb-4" placeholder="🔍 Buscar por nombre o CUIL..." onkeyup="filterCards()">
             <div class="row g-4" id="profList">
-=======
-                    <small class="opacity-75">C.E.N.S. Laila Abusamra</small>
-                </div>
-                <button onclick="logout()" class="btn btn-outline-light">Cerrar Sesión</button>
-            </div>
-        </div>
-
-        <div class="container mt-2">
-            <div class="search-container">
-                <input type="text" id="searchInput" class="form-control form-control-lg shadow-sm" placeholder="🔍 Buscar por nombre, CUIL o teléfono..." onkeyup="filterCards()">
-            </div>
-            <div class="row g-4 mt-2" id="profList">
->>>>>>> Stashed changes
     """
 
     html_items = ""
@@ -345,7 +240,6 @@ try:
         if not os.path.exists(ruta_carpeta):
             os.makedirs(ruta_carpeta)
 
-<<<<<<< Updated upstream
         # --- NUEVA LÓGICA DE LISTA DE CONTROL (REEMPLAZO) ---
         documentos_requeridos = [
             ("Bono de Puntaje", ["bono", "puntaje"]),
@@ -505,77 +399,15 @@ try:
                                 </div>
                                 <span class="text-primary fw-bold small">GESTIONAR →</span>
                             </div>
-=======
-        # LINK DE WHATSAPP DINÁMICO
-        msg_docente = f"Hola Marcelo, envío documentación para mi legajo personal. Soy {nombre} (CUIL: {info['cuil']})."
-        link_wa = f"https://wa.me/{MI_WHATSAPP}?text={msg_docente.replace(' ', '%20')}"
-
-        # --- GENERACIÓN DE FICHA.HTML INDIVIDUAL ---
-        ficha_path = os.path.join(ruta_carpeta, "Ficha.html")
-        with open(ficha_path, "w", encoding="utf-8") as f_out:
-            f_out.write(f"""
-            <!DOCTYPE html>
-            <html lang="es">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Ficha - {nombre}</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-                <style>
-                    body {{ background: #eef2f7; padding: 20px; font-family: sans-serif; }}
-                    .container-ficha {{ max-width: 500px; margin: 40px auto; background: white; padding: 35px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }}
-                    .wa-btn {{ background: #25D366; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: bold; text-decoration: none; display: block; text-align: center; transition: 0.3s; }}
-                    .wa-btn:hover {{ background: #128C7E; color: white; transform: scale(1.02); }}
-                    .info-box {{ background: #f8f9fa; border-radius: 10px; padding: 15px; border-left: 4px solid #007bff; }}
-                </style>
-            </head>
-            <body>
-                <div class="container-ficha">
-                    <h3 class="text-center fw-bold mb-4">📄 Legajo Personal</h3>
-                    <div class="info-box mb-4">
-                        <p class="mb-1 text-muted small">NOMBRE Y APELLIDO</p>
-                        <h5 class="fw-bold">{nombre}</h5>
-                        <p class="mb-0"><strong>CUIL:</strong> {info['cuil']}</p>
-                    </div>
-                    <div class="alert alert-warning small mb-4">
-                        <strong>¿Necesitás subir archivos?</strong><br>
-                        Hacé clic en el botón de abajo para enviarme tus certificados (PDF o fotos) por WhatsApp.
-                    </div>
-                    <a href="{link_wa}" target="_blank" class="wa-btn shadow-sm">🟢 Enviar Documentos por WhatsApp</a>
-                    <hr class="my-4">
-                    <div class="text-center">
-                        <button onclick='window.location.href="../../index.html"' class="btn btn-link text-muted text-decoration-none">← Volver al Sistema</button>
-                    </div>
-                </div>
-            </body>
-            </html>
-            """)
-
-        # Añadir tarjeta al Panel de Administrador
-        html_items += f"""
-                <div class="col-md-6 col-lg-4 prof-card">
-                    <a href="./{carpeta_raiz}/{info["folder"]}/Ficha.html" class="card card-profesor p-4 h-100 shadow-sm">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <h6 class="fw-bold mb-1 text-primary text-uppercase">{nombre}</h6>
-                            <span class="badge bg-light text-dark border">ID: {info['cuil'][:3]}</span>
-                        </div>
-                        <div class="mt-2">
-                            <div class="small"><strong>CUIL:</strong> {info['cuil']}</div>
-                            <div class="small text-success"><strong>TEL:</strong> {info['tel']}</div>
->>>>>>> Stashed changes
                         </div>
                     </a>
                 </div>"""
 
-<<<<<<< Updated upstream
     # --- SCRIPT FINAL Y LÓGICA DE FIREBASE PARA INDEX.HTML ---
-=======
->>>>>>> Stashed changes
     html_fin = f"""
             </div>
         </div>
     </div>
-
     <script>
         {firebase_config}
         firebase.initializeApp(firebaseConfig);
@@ -583,7 +415,6 @@ try:
         const admins = {lista_admins};
         const personal = {mapeo_personal};
 
-<<<<<<< Updated upstream
         function login() {{ auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); }}
         function logout() {{ auth.signOut().then(() => location.reload()); }}
 
@@ -591,28 +422,11 @@ try:
             const q = document.getElementById('searchInput').value.toLowerCase();
             document.querySelectorAll('.prof-card').forEach(c => {{
                 c.style.display = c.innerText.toLowerCase().includes(q) ? 'block' : 'none';
-=======
-        function login() {{ 
-            const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider); 
-        }}
-        
-        function logout() {{ 
-            auth.signOut().then(() => location.reload()); 
-        }}
-
-        function filterCards() {{
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            document.querySelectorAll('.prof-card').forEach(card => {{
-                const text = card.innerText.toLowerCase();
-                card.style.display = text.includes(query) ? "block" : "none";
->>>>>>> Stashed changes
             }});
         }}
 
         auth.onAuthStateChanged(user => {{
             if (user) {{
-<<<<<<< Updated upstream
                 const email = user.email.toLowerCase();
                 document.getElementById('login-page').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'block';
@@ -620,20 +434,6 @@ try:
                     const match = personal.find(p => p.e === email);
                     if (match) window.location.href = `./{carpeta_raiz}/` + match.f + "/Ficha.html";
                     else {{ auth.signOut(); }}
-=======
-                const userEmail = user.email.toLowerCase();
-                if (admins.includes(userEmail)) {{
-                    document.getElementById('login-page').style.display = 'none';
-                    document.getElementById('dashboard').style.display = 'block';
-                }} else {{
-                    const match = personal.find(p => p.e === userEmail);
-                    if (match) {{
-                        window.location.href = `./{carpeta_raiz}/` + match.f + "/Ficha.html";
-                    }} else {{
-                        document.getElementById('errorMsg').style.display = 'block';
-                        auth.signOut();
-                    }}
->>>>>>> Stashed changes
                 }}
             }}
         }});
@@ -645,7 +445,6 @@ try:
     with open(archivo_html_principal, "w", encoding="utf-8") as f:
         f.write(html_inicio + html_items + html_fin)
 
-<<<<<<< Updated upstream
     print(f"---------------------------------------------------------")
     print(f"✅ ÉXITO TOTAL: Se han procesado {len(diccionario_total)} registros.")
     print(f"🎨 Portada actualizada con logo: {ARCHIVO_LOGO}")
@@ -653,10 +452,3 @@ try:
 
 except Exception as e:
     print(f"❌ Error crítico durante la ejecución: {e}")
-=======
-    print(f"✅ ¡Éxito! Se han generado {len(diccionario_total)} legajos.")
-    print(f"📁 Carpeta de salida: {os.path.abspath(carpeta_raiz)}")
-
-except Exception as e:
-    print(f"❌ Error crítico en la generación: {e}")
->>>>>>> Stashed changes
