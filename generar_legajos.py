@@ -246,7 +246,7 @@ try:
             ("Certificado de Aptitud Psicofísica", ["psico", "apto", "aptitud"]),
             ("Certificado de Antecedentes Penales", ["antecedentes", "penales"]),
             ("Declaración Jurada de Cargo", ["declaracion", "jurada", "ddjj"]),
-            ("DNI", ["DNI","dni","documento"]),
+            ("DNI", ["DNI", "dni", "documento"]),
             ("Ley Micaela", ["micaela"]),
             ("Ley Lucio", ["lucio"]),
             ("Prevención de Bullying", ["bullying", "acoso"])
